@@ -38,10 +38,9 @@ build:
 
 ## Setup
 
-### 1. Enable default repositories and install the recipe JAR
+### 1. Install the recipe JAR
 
 ```bash
-mod config recipes artifacts default-repositories enable
 mod config recipes jar install org.openrewrite:rewrite-cobol:2.13.0
 ```
 
