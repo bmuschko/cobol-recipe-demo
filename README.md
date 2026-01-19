@@ -10,7 +10,8 @@ src/
     ├── cobol/
     │   ├── CUSTMGMT.cbl    # Customer management program with debugging mode
     │   ├── CUSTSQL.cbl     # SQL processing program with EXEC SQL statements
-    │   └── CUSTBATCH.cbl   # Batch processing program with COPY REPLACING
+    │   ├── CUSTBATCH.cbl   # Batch processing program with COPY REPLACING
+    │   └── CUSTCICS.cbl    # CICS transaction program with EXEC CICS statements
     └── copylib/
         ├── CUSTOMER.cpy    # Customer record copybook
         └── SQLCA.cpy       # SQL communication area copybook
@@ -73,6 +74,7 @@ The `rewrite-cobol` module (version 2.13.0) provides the following recipes:
 | `FindCopybook` | `mod run . --recipe=org.openrewrite.cobol.search.FindCopybook` | Completed (produced data tables) |
 | `FindWord` | `mod run . --recipe=org.openrewrite.cobol.search.FindWord -P searchTerm=CUST-ID -P exactMatch=true` | Produced search.patch - Found 4 occurrences of CUST-ID |
 | `FindReference` | `mod run . --recipe=org.openrewrite.cobol.search.FindReference -P searchTerm=CUSTVAL -P exactMatch=true` | Completed (searched for subroutine reference) |
+| `FindRelationships` (CICS) | `mod run . --recipe=org.openrewrite.cobol.search.FindRelationships` | Produced search.patch - Found CICS program relationships including CUSTCICS COPY dependency |
 
 ## Example Results
 
@@ -102,6 +104,32 @@ This recipe finds all occurrences of a specific word and marks them:
 -               RECORD KEY IS CUST-ID
 +               RECORD KEY IS ~~>CUST-ID
 ```
+
+### FindRelationships (CICS Program)
+
+The `CUSTCICS.cbl` program demonstrates CICS support. Running the FindRelationships recipe identifies the CICS program and its copybook dependency:
+
+**Command:**
+```bash
+mod run . --recipe=org.openrewrite.cobol.search.FindRelationships
+```
+
+**Search patch output for CUSTCICS.cbl:**
+```diff
+-       COPY CUSTOMER.
++       COPY ~~>CUSTOMER.
+```
+
+**CobolRelationships data table output:**
+```bash
+mod study . --last-recipe-run --data-table CobolRelationships
+```
+
+| dependent | dependentType | action | dependency | dependencyType |
+|-----------|---------------|--------|------------|----------------|
+| CUSTCICS  | COBOL         | COPY   | CUSTOMER   | COPYBOOK       |
+
+**Note:** The CICS program is parsed successfully and standard COBOL relationships (COPY statements) are identified. EXEC CICS statements are recognized by the parser but their internal commands are treated as opaque blocks rather than being fully analyzed for relationships.
 
 ## Applying Changes
 
