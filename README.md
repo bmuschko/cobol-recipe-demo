@@ -24,7 +24,7 @@ src/
 
 ## Configuration
 
-The project uses a `.moderne/moderne.yml` file to configure the COBOL build step:
+The project uses a `.moderne/moderne.yml` file to configure the Mainframe build step:
 
 ```yaml
 specs: specs.moderne.ai/v1/cli
