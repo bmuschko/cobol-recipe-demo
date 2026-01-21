@@ -1,0 +1,51 @@
+name: Moderne COBOL Analysis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install Moderne CLI
+        run: |
+          curl -sSL https://docs.moderne.io/moderne-cli/install.sh | bash
+          echo "$HOME/.moderne" >> $GITHUB_PATH
+
+      - name: Install recipe JAR
+        run: mod config recipes jar install org.openrewrite:rewrite-cobol:2.13.2
+
+      - name: Build LST
+        run: mod build . --no-download
+
+      - name: Run RemoveWithDebuggingMode recipe
+        run: mod run . --recipe=org.openrewrite.cobol.cleanup.RemoveWithDebuggingMode
+
+      - name: Run FindIndicators recipe
+        run: mod run . --recipe=org.openrewrite.cobol.search.FindIndicators -P indicator=D
+
+      - name: Run FindRelationships recipe
+        run: mod run . --recipe=org.openrewrite.cobol.search.FindRelationships
+
+      - name: Run FindCopybook recipe
+        run: mod run . --recipe=org.openrewrite.cobol.search.FindCopybook
+
+      - name: Run FindWord recipe
+        run: mod run . --recipe=org.openrewrite.cobol.search.FindWord -P searchTerm=CUST-ID -P exactMatch=true
+
+      - name: Run FindReference recipe
+        run: mod run . --recipe=org.openrewrite.cobol.search.FindReference -P searchTerm=CUSTVAL -P exactMatch=true
