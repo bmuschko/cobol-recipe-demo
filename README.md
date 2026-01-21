@@ -19,7 +19,7 @@ src/
 
 ## Prerequisites
 
-- [Moderne CLI](https://docs.moderne.io/user-documentation/moderne-cli/getting-started/cli-intro/) version 3.55.1 or higher
+- [Moderne CLI](https://docs.moderne.io/user-documentation/moderne-cli/getting-started/cli-intro/) version 3.56.0 or higher
 - Java 8 or higher
 
 ## Configuration
@@ -30,7 +30,7 @@ The project uses a `.moderne/moderne.yml` file to configure the COBOL build step
 specs: specs.moderne.ai/v1/cli
 build:
   steps:
-    - type: cobol
+    - type: mainframe
       cobolSourceDirectories:
         - src/main/cobol
       copybookDirectories:
