@@ -42,7 +42,7 @@ build:
 ### 1. Install the recipe JAR
 
 ```bash
-mod config recipes jar install org.openrewrite:rewrite-cobol:2.13.0
+mod config recipes jar install org.openrewrite:rewrite-cobol:2.13.2
 ```
 
 ### 2. Build the LST (Lossless Semantic Tree)
