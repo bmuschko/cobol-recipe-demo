@@ -1,6 +1,6 @@
-# COBOL Recipe Demo
+# Mainframe Recipe Demo
 
-This project demonstrates the use of [OpenRewrite](https://docs.openrewrite.org/) COBOL recipes with the [Moderne CLI](https://docs.moderne.io/user-documentation/moderne-cli/getting-started/cli-intro/).
+This project demonstrates the use of [OpenRewrite](https://docs.openrewrite.org/) mainframe recipes with the [Moderne CLI](https://docs.moderne.io/user-documentation/moderne-cli/getting-started/cli-intro/).
 
 ## Project Structure
 
@@ -24,7 +24,7 @@ src/
 
 ## Configuration
 
-The project uses a `.moderne/moderne.yml` file to configure the Mainframe build step:
+The project uses a `.moderne/moderne.yml` file to configure the mainframe build step:
 
 ```yaml
 specs: specs.moderne.ai/v1/cli
