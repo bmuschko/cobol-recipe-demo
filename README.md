@@ -19,7 +19,7 @@ src/
 
 ## Prerequisites
 
-- [Moderne CLI](https://docs.moderne.io/user-documentation/moderne-cli/getting-started/cli-intro/) version 3.56.0 or higher
+- [Moderne CLI](https://docs.moderne.io/user-documentation/moderne-cli/getting-started/cli-intro/) version 3.57.2 or higher
 - Java 8 or higher
 
 ## Configuration
@@ -42,7 +42,7 @@ build:
 ### 1. Install the recipe JAR
 
 ```bash
-mod config recipes jar install org.openrewrite:rewrite-cobol:2.13.2
+mod config recipes jar install org.openrewrite:rewrite-cobol:2.14.0
 ```
 
 ### 2. Build the LST (Lossless Semantic Tree)
@@ -53,7 +53,7 @@ mod build . --no-download
 
 ## Available Recipes
 
-The `rewrite-cobol` module (version 2.13.0) provides the following recipes:
+The `rewrite-cobol` module (version 2.14.0) provides the following recipes:
 
 | Recipe | Description |
 |--------|-------------|
