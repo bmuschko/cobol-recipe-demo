@@ -22,15 +22,19 @@ jobs:
           java-version: '17'
 
       - name: Install Moderne CLI
+        env:
+          MODERNE_CLI_VERSION: "3.57.2"
         run: |
-          curl -sSL -o mod.jar https://repo1.maven.org/maven2/io/moderne/moderne-cli/3.57.2/moderne-cli-3.57.2.jar
+          curl -sSL -o mod.jar https://repo1.maven.org/maven2/io/moderne/moderne-cli/${{ env.MODERNE_CLI_VERSION }}/moderne-cli-${{ env.MODERNE_CLI_VERSION }}.jar
           echo '#!/bin/bash' > mod
           echo 'java -jar '"$GITHUB_WORKSPACE"'/mod.jar "$@"' >> mod
           chmod +x mod
           echo "$GITHUB_WORKSPACE" >> $GITHUB_PATH
 
       - name: Install recipe JAR
-        run: mod config recipes jar install org.openrewrite:rewrite-cobol:2.14.0
+        env:
+          REWRITE_COBOL_VERSION: "2.14.0"
+        run: mod config recipes jar install org.openrewrite:rewrite-cobol:${{ env.REWRITE_COBOL_VERSION }}
 
       - name: Build LST
         run: mod build . --no-download
