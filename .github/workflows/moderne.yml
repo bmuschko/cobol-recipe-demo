@@ -40,19 +40,49 @@ jobs:
         run: mod build . --no-download
 
       - name: Run RemoveWithDebuggingMode recipe
-        run: mod run . --recipe=org.openrewrite.cobol.cleanup.RemoveWithDebuggingMode
+        run: |
+          mod run . --recipe=org.openrewrite.cobol.cleanup.RemoveWithDebuggingMode 2>&1 | tee output.log
+          if grep -qE "Found [0-9]+ errors while running the recipe\." output.log; then
+            echo "Recipe execution failed with errors"
+            exit 1
+          fi
 
       - name: Run FindIndicators recipe
-        run: mod run . --recipe=org.openrewrite.cobol.search.FindIndicators -P indicator=D
+        run: |
+          mod run . --recipe=org.openrewrite.cobol.search.FindIndicators -P indicator=D 2>&1 | tee output.log
+          if grep -qE "Found [0-9]+ errors while running the recipe\." output.log; then
+            echo "Recipe execution failed with errors"
+            exit 1
+          fi
 
       - name: Run FindRelationships recipe
-        run: mod run . --recipe=org.openrewrite.cobol.search.FindRelationships
+        run: |
+          mod run . --recipe=org.openrewrite.cobol.search.FindRelationships 2>&1 | tee output.log
+          if grep -qE "Found [0-9]+ errors while running the recipe\." output.log; then
+            echo "Recipe execution failed with errors"
+            exit 1
+          fi
 
       - name: Run FindCopybook recipe
-        run: mod run . --recipe=org.openrewrite.cobol.search.FindCopybook
+        run: |
+          mod run . --recipe=org.openrewrite.cobol.search.FindCopybook 2>&1 | tee output.log
+          if grep -qE "Found [0-9]+ errors while running the recipe\." output.log; then
+            echo "Recipe execution failed with errors"
+            exit 1
+          fi
 
       - name: Run FindWord recipe
-        run: mod run . --recipe=org.openrewrite.cobol.search.FindWord -P searchTerm=CUST-ID -P exactMatch=true
+        run: |
+          mod run . --recipe=org.openrewrite.cobol.search.FindWord -P searchTerm=CUST-ID -P exactMatch=true 2>&1 | tee output.log
+          if grep -qE "Found [0-9]+ errors while running the recipe\." output.log; then
+            echo "Recipe execution failed with errors"
+            exit 1
+          fi
 
       - name: Run FindReference recipe
-        run: mod run . --recipe=org.openrewrite.cobol.search.FindReference -P searchTerm=CUSTVAL -P exactMatch=true
+        run: |
+          mod run . --recipe=org.openrewrite.cobol.search.FindReference -P searchTerm=CUSTVAL -P exactMatch=true 2>&1 | tee output.log
+          if grep -qE "Found [0-9]+ errors while running the recipe\." output.log; then
+            echo "Recipe execution failed with errors"
+            exit 1
+          fi
