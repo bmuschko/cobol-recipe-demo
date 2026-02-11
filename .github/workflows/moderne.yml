@@ -23,7 +23,7 @@ jobs:
 
       - name: Install Moderne CLI
         run: |
-          curl -sSL -o mod.jar https://repo1.maven.org/maven2/io/moderne/moderne-cli/3.57.2/moderne-cli-3.56.0.jar
+          curl -sSL -o mod.jar https://repo1.maven.org/maven2/io/moderne/moderne-cli/3.57.2/moderne-cli-3.57.2.jar
           echo '#!/bin/bash' > mod
           echo 'java -jar '"$GITHUB_WORKSPACE"'/mod.jar "$@"' >> mod
           chmod +x mod
