@@ -23,7 +23,7 @@ jobs:
 
       - name: Install Moderne CLI
         env:
-          MODERNE_CLI_VERSION: "3.57.2"
+          MODERNE_CLI_VERSION: "3.57.4"
         run: |
           curl -sSL -o mod.jar https://repo1.maven.org/maven2/io/moderne/moderne-cli/${{ env.MODERNE_CLI_VERSION }}/moderne-cli-${{ env.MODERNE_CLI_VERSION }}.jar
           echo '#!/bin/bash' > mod

@@ -19,7 +19,7 @@ src/
 
 ## Prerequisites
 
-- [Moderne CLI](https://docs.moderne.io/user-documentation/moderne-cli/getting-started/cli-intro/) version 3.57.2 or higher
+- [Moderne CLI](https://docs.moderne.io/user-documentation/moderne-cli/getting-started/cli-intro/) version 3.57.4 or higher
 - Java 8 or higher
 
 ## Configuration
