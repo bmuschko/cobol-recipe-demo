@@ -35,6 +35,7 @@ build:
         - src/main/cobol
       copybookDirectories:
         - src/main/copylib
+    - type: resource
 ```
 
 ## Setup
