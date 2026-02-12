@@ -1,4 +1,4 @@
 .idea
 .claude
-.moderne/build/
-.moderne/run/
+.moderne/*
+!.moderne/moderne.yml
