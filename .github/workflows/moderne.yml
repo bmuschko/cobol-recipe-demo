@@ -67,4 +67,4 @@ jobs:
         run: mod-run . --recipe=org.openrewrite.cobol.search.FindWord -P searchTerm=CUST-ID -P exactMatch=true
 
       - name: Run FindReference recipe
-        run: mod-run . --recipe=org.openrewrite.cobol.search.FindReference -P searchTerm=CUSTVAL -P exactMatch=true
+        run: mod-run . --recipe=org.openrewrite.cobol.search.FindReference -P searchTerm=CUSTOMER-RECORD -P exactMatch=true

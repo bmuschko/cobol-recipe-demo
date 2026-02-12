@@ -73,7 +73,7 @@ The `rewrite-cobol` module (version 2.14.0) provides the following recipes:
 | `FindRelationships` | `mod run . --recipe=org.openrewrite.cobol.search.FindRelationships` | Produced search.patch - Found COBOL relationships |
 | `FindCopybook` | `mod run . --recipe=org.openrewrite.cobol.search.FindCopybook` | Completed (produced data tables) |
 | `FindWord` | `mod run . --recipe=org.openrewrite.cobol.search.FindWord -P searchTerm=CUST-ID -P exactMatch=true` | Produced search.patch - Found 4 occurrences of CUST-ID |
-| `FindReference` | `mod run . --recipe=org.openrewrite.cobol.search.FindReference -P searchTerm=CUSTVAL -P exactMatch=true` | Completed (searched for subroutine reference) |
+| `FindReference` | `mod run . --recipe=org.openrewrite.cobol.search.FindReference -P searchTerm=CUSTOMER-RECORD -P exactMatch=true` | Completed (searched for subroutine reference) |
 | `FindRelationships` (CICS) | `mod run . --recipe=org.openrewrite.cobol.search.FindRelationships` | Produced search.patch - Found CICS program relationships including CUSTCICS COPY dependency |
 
 ## Example Results
