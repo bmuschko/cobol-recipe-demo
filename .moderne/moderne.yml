@@ -2,8 +2,4 @@ specs: specs.moderne.ai/v1/cli
 build:
   steps:
     - type: mainframe
-      cobolSourceDirectories:
-        - src/main/cobol
-      copybookDirectories:
-        - src/main/copylib
     - type: resource
